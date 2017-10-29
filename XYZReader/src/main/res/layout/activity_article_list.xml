@@ -39,14 +39,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="16dp"
-                android:paddingBottom="1dp"
-                android:layout_marginLeft="@dimen/margin_text_left"
+                android:layout_marginLeft="@dimen/margin_left"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/logo"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5" />
 
-            <android.support.v7.widget.Toolbar
+            <com.example.xyzreader.customview.CustomFontToolbar
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
