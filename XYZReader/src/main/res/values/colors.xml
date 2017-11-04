@@ -23,7 +23,8 @@
     <color name="theme_accent">#04561A</color>
     <color name="ltgray">#ffe0e0e0</color>-->
 
-    <color name="primary">#303f9f</color>
-    <color name="primary_dark">#001970</color>
-    <color name="accent">#ffa000</color>
+    <color name="primary">#f4511e</color>
+    <color name="primary_dark">#b91400</color>
+    <color name="accent">#2196f3</color>
+    <color name="transparent_primary">#88f4511e</color>
 </resources>
