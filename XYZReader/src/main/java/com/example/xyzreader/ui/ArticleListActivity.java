@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +43,8 @@ public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = ArticleListActivity.class.toString();
+    private static final int LOADER_ID_ALL = 111222;
+
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
 
@@ -65,7 +69,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        getLoaderManager().initLoader(0, null, this);
+        getLoaderManager().initLoader(LOADER_ID_ALL, null, this);
 
         if (savedInstanceState == null) {
             refresh();
@@ -146,8 +150,23 @@ public class ArticleListActivity extends AppCompatActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                    long itemId = getItemId(vh.getAdapterPosition());
+                    Intent intent = new Intent(ArticleListActivity.this, ArticleDetailActivity.class);
+                    intent.setData(ItemsContract.Items.buildItemUri(itemId));
+
+                    intent.putExtra(ArticleDetailActivity.EXTRA_BY_DETAILS, vh.subtitleView.getText());
+                    intent.putExtra(ArticleDetailActivity.EXTRA_IMAGE_URL, vh.thumbnailView.getImageUrl());
+                    intent.putExtra(ArticleDetailActivity.EXTRA_TITLE, vh.titleView.getText());
+                    intent.putExtra(ArticleDetailActivity.EXTRA_ITEM_ID, itemId);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ActivityOptionsCompat options = ActivityOptionsCompat.
+                                makeSceneTransitionAnimation(ArticleListActivity.this, vh.thumbnailView, getString(R.string.transition_image));
+                        startActivity(intent, options.toBundle());
+                    }
+                    else {
+                        startActivity(intent);
+                    }
                 }
             });
             return vh;

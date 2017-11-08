@@ -27,4 +27,5 @@
     <color name="primary_dark">#b91400</color>
     <color name="accent">#2196f3</color>
     <color name="transparent_primary">#88f4511e</color>
+    <color name="transparent_grey">#88000000</color>
 </resources>

@@ -24,8 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        android:orientation="vertical"
-        android:elevation="4dp"
         >
 
         <android.support.v7.widget.Toolbar
@@ -33,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
+            android:elevation="4dp"
             app:title="">
 
             <ImageView

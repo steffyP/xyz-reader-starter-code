@@ -28,6 +28,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:transitionName="@string/transition_image"
             android:background="@color/photo_placeholder"
             android:scaleType="centerCrop" />
 
