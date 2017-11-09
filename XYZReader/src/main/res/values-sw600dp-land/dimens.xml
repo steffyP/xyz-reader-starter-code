@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="list_column_count">4</integer>
+    <dimen name="collapsing_toolbar">200dp</dimen>
 
+    <!-- detail -->
+    <bool name="detail_is_card">true</bool>
+
+    <dimen name="detail_photo_height">600dp</dimen>
+    <dimen name="detail_card_top_margin">256dp</dimen>
+
+    <dimen name="detail_margin_side">160dp</dimen>
+    <dimen name="detail_margin_top">32dp</dimen>
+    <dimen name="detail_metabar_title_bottom_padding">16dp</dimen>
+    <dimen name="detail_body_top_margin">16dp</dimen>
+    <dimen name="detail_body_bottom_margin">88dp</dimen>
 </resources>

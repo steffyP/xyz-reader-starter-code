@@ -1,6 +1,6 @@
 <resources>
     <!-- detail -->
-    <dimen name="detail_title_text_size">32sp</dimen>
+    <dimen name="detail_title_text_size">24sp</dimen>
     <dimen name="detail_body_text_size">22sp</dimen>
     <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.25</item>
 
@@ -9,8 +9,24 @@
     <dimen name="fab_margin">24dp</dimen>
     <dimen name="margin_left">16dp</dimen>
     <dimen name="margin_right">16dp</dimen>
-    <dimen name="collapsing_toolbar">240dp</dimen>
+    <dimen name="collapsing_toolbar">300dp</dimen>
     <dimen name="margin_text_left">72dp</dimen>
     <dimen name="fab_size">56dp</dimen>
+
+    <!-- list -->
+    <dimen name="list_side_margin">4dp</dimen>
+    <dimen name="list_toolbar_side_margin">0dp</dimen>
+    <integer name="list_column_count">2</integer>
+
+    <!-- detail -->
+    <bool name="detail_is_card">false</bool>
+    <dimen name="detail_photo_height">304dp</dimen>
+    <dimen name="detail_card_top_margin">@dimen/detail_photo_height</dimen>
+    <dimen name="detail_margin_side">16dp</dimen>
+    <dimen name="detail_card_max_width">10000dp</dimen> <!-- force match_parent -->
+    <dimen name="detail_margin_top">16dp</dimen>
+    <dimen name="detail_metabar_title_bottom_padding">4dp</dimen>
+    <dimen name="detail_body_top_margin">16dp</dimen>
+    <dimen name="detail_body_bottom_margin">88dp</dimen>
 
 </resources>

@@ -2,4 +2,17 @@
 <resources>
     <integer name="list_column_count">3</integer>
 
+    <!-- list -->
+    <dimen name="list_side_margin">8dp</dimen>
+    <dimen name="list_toolbar_side_margin">0dp</dimen>
+
+    <!-- detail -->
+    <dimen name="detail_photo_height">224dp</dimen>
+    <dimen name="detail_margin_side">16dp</dimen>
+
+    <dimen name="detail_margin_top">16dp</dimen>
+    <dimen name="detail_metabar_title_bottom_padding">8dp</dimen>
+    <dimen name="detail_body_top_margin">16dp</dimen>
+    <dimen name="detail_body_bottom_margin">88dp</dimen>
+
 </resources>

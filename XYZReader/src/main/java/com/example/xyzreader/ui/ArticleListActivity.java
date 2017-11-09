@@ -13,7 +13,9 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -53,6 +55,7 @@ public class ArticleListActivity extends AppCompatActivity implements
     private SimpleDateFormat outputFormat = new SimpleDateFormat();
     // Most time functions can only handle 1902 - 2037
     private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2,1,1);
+    private Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +75,14 @@ public class ArticleListActivity extends AppCompatActivity implements
         getLoaderManager().initLoader(LOADER_ID_ALL, null, this);
 
         if (savedInstanceState == null) {
+            Log.d(TAG, "saveinstancestate null");
             refresh();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     private void refresh() {
@@ -116,13 +125,23 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        Adapter adapter = new Adapter(cursor);
-        adapter.setHasStableIds(true);
-        mRecyclerView.setAdapter(adapter);
+        if(adapter != null){
+            adapter.swapData(cursor);
+        } else {
+            mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+            adapter = new Adapter(cursor);
+            adapter.setHasStableIds(true);
+            mRecyclerView.setAdapter(adapter);
+
+        }
         int columnCount = getResources().getInteger(R.integer.list_column_count);
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);
+        mRecyclerView.setHasFixedSize(true);
+
+
+
     }
 
     @Override
@@ -141,6 +160,14 @@ public class ArticleListActivity extends AppCompatActivity implements
         public long getItemId(int position) {
             mCursor.moveToPosition(position);
             return mCursor.getLong(ArticleLoader.Query._ID);
+        }
+
+        public void swapData(Cursor cursor){
+            if(mCursor != null){
+                mCursor.close();
+                mCursor = null;
+            }
+            mCursor = cursor;
         }
 
         @Override
