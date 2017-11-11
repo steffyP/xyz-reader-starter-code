@@ -10,5 +10,7 @@
     <string name="up">Up</string>
     <string name="transition_image">transition_image</string>
     <string name="error_loading_data">Could not refresh data.</string>
+    <string name="error_no_connection">No internet connection. Cannot load data.</string>
+    <string name="no_data">No data available.\nPlease check your internet connection and swipe to refresh data.</string>
 
 </resources>

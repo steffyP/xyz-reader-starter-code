@@ -51,7 +51,7 @@
                     android:id="@+id/article_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:lineSpacingMultiplier="0.8"
+                    android:lineSpacingMultiplier="0.9"
                     android:paddingBottom="@dimen/small_margin"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/detail_title_text_size"

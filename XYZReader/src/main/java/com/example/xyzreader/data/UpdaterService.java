@@ -30,6 +30,8 @@ public class UpdaterService extends IntentService {
 
     public static final String BROADCAST_ACTION_STATE_ERROR
             = "com.example.xyzreader.intent.action.ERROR";
+    public static final String EXTRA_NO_CONNECTION
+            = "com.example.xyzreader.intent.action.NO_CONNECTION";
 
     public UpdaterService() {
         super(TAG);
@@ -37,16 +39,19 @@ public class UpdaterService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+
         Time time = new Time();
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo ni = cm.getActiveNetworkInfo();
         if (ni == null || !ni.isConnected()) {
             Log.w(TAG, "Not online, not refreshing.");
+            sendBroadcast(new Intent(BROADCAST_ACTION_STATE_ERROR).putExtra(EXTRA_NO_CONNECTION, true));
+
             return;
         }
 
-        sendStickyBroadcast(
+        sendBroadcast(
                 new Intent(BROADCAST_ACTION_STATE_CHANGE).putExtra(EXTRA_REFRESHING, true));
 
         // Don't even inspect the intent, we only do one thing, and that's fetch content.
@@ -81,11 +86,12 @@ public class UpdaterService extends IntentService {
 
         } catch (JSONException | RemoteException | OperationApplicationException e) {
             Log.e(TAG, "Error updating content.", e);
-            sendStickyBroadcast(new Intent(BROADCAST_ACTION_STATE_ERROR));
+            sendBroadcast(new Intent(BROADCAST_ACTION_STATE_ERROR));
+            return;
 
         }
 
-        sendStickyBroadcast(
+        sendBroadcast(
                 new Intent(BROADCAST_ACTION_STATE_CHANGE).putExtra(EXTRA_REFRESHING, false));
     }
 }

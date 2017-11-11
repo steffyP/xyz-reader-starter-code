@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:maxWidth="300dp"
                     android:layout_height="wrap_content"
-                    android:lineSpacingMultiplier="0.8"
+                    android:lineSpacingMultiplier="0.9"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/detail_title_text_size"
                     android:textStyle="bold"
