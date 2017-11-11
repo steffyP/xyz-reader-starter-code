@@ -6,8 +6,8 @@ This repository stores the starter code for the XYZ Reader project in Udacity's 
 ## Resulting App - Screencasts ##
 
 ### Portrait Mode ###
-<img src="screenshots/screencast_1.gif" align="left"/>
+![Screenshot](screenshots/screencast_1.gif)
 
 
 ### Landscape Mode ###
-<img src="screeshots/screencast_2.gif" align="left"/>
+![Screenshot](screenshots/screencast_2.gif)
