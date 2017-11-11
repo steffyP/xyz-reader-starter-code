@@ -1,16 +1,17 @@
 package com.example.xyzreader.ui;
 
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,20 +33,16 @@ public class ArticleDetailActivity extends AppCompatActivity implements LoaderMa
     public static final String EXTRA_IMAGE_URL = "extra_image_url";
     public static final String EXTRA_TITLE = "extra_title";
     public static final String EXTRA_BY_DETAILS = "extra_author";
-    public static final String EXTRA_PUBLISHED = "extra_published";
     public static final String EXTRA_ITEM_ID = "extra_item_id";
 
     private long mSelectedItemId;
-    private int mSelectedItemUpButtonFloor = Integer.MAX_VALUE;
-    private int mTopInset;
-
-    private boolean isToolbarVisible;
     private Toolbar toolbar;
     private ImageView imageView;
     private TextView titleView;
     private TextView bylineView;
     private TextView bodyView;
     private static final int LOADER_DETAILS_ID = 113344;
+    private FloatingActionButton fabShare;
 
 
     @Override
@@ -58,19 +55,17 @@ public class ArticleDetailActivity extends AppCompatActivity implements LoaderMa
 
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        isToolbarVisible = false;
-
-        AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
-        //todo appBarLayout.addOnOffsetChangedListener(this);
 
 
         imageView = findViewById(R.id.photo);
         titleView = findViewById(R.id.article_title);
-        // todo
+
         bylineView = findViewById(R.id.article_byline);
         bodyView = findViewById(R.id.article_body);
 
-        // todo
+        fabShare = findViewById(R.id.share_fab);
+
+
         if (savedInstanceState == null) {
             if (getIntent() != null && getIntent().getData() != null) {
                 mStartId = ItemsContract.Items.getItemId(getIntent().getData());
@@ -84,7 +79,7 @@ public class ArticleDetailActivity extends AppCompatActivity implements LoaderMa
             String imageUrl = b.getString(EXTRA_IMAGE_URL, "");
             if (!imageUrl.isEmpty()) loadImage(imageUrl);
 
-            String title = b.getString(EXTRA_TITLE, "");
+            final String title = b.getString(EXTRA_TITLE, "");
             titleView.setText(title);
             getSupportActionBar().setTitle(title);
 
@@ -95,6 +90,16 @@ public class ArticleDetailActivity extends AppCompatActivity implements LoaderMa
             getLoaderManager().initLoader(LOADER_DETAILS_ID, null, this);
 
 
+            fabShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Check this article out: " + title + ".\nhttp://udacity.com");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                }
+            });
         }
     }
 
@@ -108,7 +113,6 @@ public class ArticleDetailActivity extends AppCompatActivity implements LoaderMa
 
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-
                     }
                 });
     }

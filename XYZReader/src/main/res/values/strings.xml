@@ -9,5 +9,6 @@
 
     <string name="up">Up</string>
     <string name="transition_image">transition_image</string>
+    <string name="error_loading_data">Could not refresh data.</string>
 
 </resources>

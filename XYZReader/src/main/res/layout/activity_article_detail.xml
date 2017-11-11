@@ -1,12 +1,16 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/collapsing_toolbar">
+        android:layout_height="@dimen/collapsing_toolbar"
+        android:fitsSystemWindows="true"
+        >
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
@@ -15,7 +19,9 @@
             app:collapsedTitleTextAppearance="@style/CollapsingToolbarTextStyle"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@style/ExpandingToolbarTextStyle"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            android:fitsSystemWindows="true"
+            >
 
 
             <ImageView
@@ -36,16 +42,17 @@
                 android:layout_gravity="bottom"
                 android:background="@color/transparent_grey"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
-                android:paddingLeft="@dimen/detail_margin_side"
-                android:paddingRight="@dimen/detail_margin_side">
+                android:paddingTop="@dimen/medium_margin"
+                android:paddingBottom="@dimen/medium_margin"
+                android:paddingLeft="@dimen/large_margin"
+                android:paddingRight="@dimen/large_margin">
 
                 <com.example.xyzreader.customview.CustomTextView
                     android:id="@+id/article_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:lineSpacingMultiplier="0.8"
-                    android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
+                    android:paddingBottom="@dimen/small_margin"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/detail_title_text_size"
                     android:textStyle="bold" />
@@ -61,9 +68,10 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/main_toolbar"
+                app:contentInsetStartWithNavigation="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="4dp"
+                android:elevation="@dimen/toolbar_elevation"
                 app:layout_collapseMode="pin" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -81,7 +89,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/detail_margin_side"
-
             android:layout_marginRight="@dimen/detail_margin_side"
             android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier"
             android:paddingBottom="@dimen/detail_body_bottom_margin"
@@ -97,8 +104,7 @@
         android:layout_width="@dimen/fab_size"
         android:layout_height="@dimen/fab_size"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
+        app:useCompatPadding="true"
         android:contentDescription="@string/action_share"
         android:elevation="@dimen/fab_elevation"
         android:src="@drawable/ic_share"

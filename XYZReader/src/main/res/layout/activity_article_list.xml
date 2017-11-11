@@ -14,7 +14,8 @@
   limitations under the License.
   -->
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -31,13 +32,13 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
-            android:elevation="4dp"
+            android:elevation="@dimen/toolbar_elevation"
             app:title="">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginLeft="@dimen/large_margin"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/logo" />
         </android.support.v7.widget.Toolbar>
@@ -55,8 +56,8 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/list_side_margin"
-            android:paddingBottom="2dp"
+            android:paddingTop="@dimen/list_top_margin"
+            android:paddingBottom="@dimen/list_top_margin"
             android:paddingLeft="@dimen/list_side_margin"
             android:paddingRight="@dimen/list_side_margin"
             android:scrollbarStyle="outsideOverlay" />
